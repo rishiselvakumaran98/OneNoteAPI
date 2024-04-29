@@ -9,18 +9,35 @@ Hmm... Are you tired of creating multiple sections of notes in OneNote and typin
 
 2. Create a .txt file at the root of this project in the name of the section you wish to populate in your Notebook. Eg. `Breakfast Menu.txt`
 
-3. Now is the part that might be challenging for some of you especially if you have a notebook that is stored in Enterprise/Corporate Microsoft 365 accounts. 
+3. Now comes the part that might be challenging for some of you especially if you have a notebook that is stored in Enterprise/Corporate Microsoft 365 accounts. 
     
     Using Graph Explorer:
      - Log in to Graph Explorer:
         Access Graph Explorer at [Graph Explorer](!https://developer.microsoft.com/en-us/graph/graph-explorer).
       - Sign in with the account that has access to the OneNote notebooks.
     
-    Make the API Request:
-      You can use the following GET request to retrieve all notebooks:
-      `https://graph.microsoft.com/v1.0/me/onenote/notebooks?$select=id,displayName,createdDateTime,isDefault,userRole,isShared`
-      
-      Manually Search for your notebook under `displayName` parameter from the API response.
-      
-      Use the browser’s search feature (usually Ctrl+F or CMD+f in Mac) to find your `notebook_name`.
+## Step 1: Gather Information Using Microsoft Graph Explorer
+ ### A. Finding the User ID and Notebook Name
+    
+ Go to Microsoft Graph Explorer: Open Graph Explorer and sign in with your Microsoft account.
+   Retrieve User Profile: To get your user ID, execute the following API request:
+   `https://graph.microsoft.com/v1.0/me?$select=id`
+   The response will include your user ID. Note this `id`.
 
+   Retrieve Notebooks: To find the name of your notebooks, execute:
+   `https://graph.microsoft.com/v1.0/me/onenote/notebooks`
+   From the JSON response, find the displayName of the notebook you want to use.
+       
+ ### B. Accessing the Bearer Token
+ **Authentication Token**: In Graph Explorer, after you sign in, your OAuth2.0 Bearer Token (Access Token) can be viewed and copied from the ```Access Token``` tab on the left panel.
+
+## Step 2: Setup OneNoteAPI.env File
+Use the file named OneNoteAPI.env in the root of your project with the following content, replacing `<user_id>, <notebook_name>, <base_url>, and <bearer_token>` with the actual values you gathered:
+
+
+ ```sh
+ USER_ID=<user_id>
+ NOTEBOOK_NAME=<notebook_name>
+ BASE_URL=https://graph.microsoft.com/v1.0
+ BEARER_TOKEN=<bearer_token>
+ ```
