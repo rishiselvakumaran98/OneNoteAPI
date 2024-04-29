@@ -41,3 +41,15 @@ Use the file named OneNoteAPI.env in the root of your project with the following
  BASE_URL=https://graph.microsoft.com/v1.0
  BEARER_TOKEN=<bearer_token>
  ```
+
+ ## Step 3: Running the script
+Now that you were able to setup the project, its time to run it! But first install the required modules for this project using the command:
+
+```sh
+pip3 install -r requirements.txt
+```
+To run the script run the following command with these required arguments:
+
+```sh
+python3 OneNoteAPI.py <Notebook_name> <section_name>
+```
