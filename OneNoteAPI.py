@@ -79,9 +79,8 @@ if __name__ == "__main__":
     file_path = os.path.join(os.getcwd(), f"{args.section_name}.txt")
     create_one_note_section = CreateOneNoteSections(args.notebook_name, args.section_name)
     page_title_sublists = create_one_note_section.read_page_titles(file_path)
-    print(page_title_sublists)
-    # result = create_one_note_section.create_pages(page_title_sublists)
-    # if result:
-    #     print("All pages created successfully!")
-    # else:
-    #     print("Failed to create some pages!")
+    result = create_one_note_section.create_pages(page_title_sublists)
+    if result:
+        print("All pages created successfully!")
+    else:
+        print("Failed to create some pages!")
